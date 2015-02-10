@@ -21,7 +21,6 @@ class EventHandler
         for (int i = 0; i < players.size(); i++)
         {
             EntityPlayer player = (EntityPlayer) players.get(i);
-            System.out.println(player.getAge() / 20);
             int invincibilityTimeTicks = ConfigurationHandler.joinInvicibility * 20;
             if (player.getAge() > invincibilityTimeTicks + 2)
                 return;

@@ -9,13 +9,16 @@ import org.apache.logging.log4j.Level;
 /**
  * Created by Nico on 2/8/2015.
  */
-@Mod(modid=JoinInvincibility.modid, name = JoinInvincibility.name, version = JoinInvincibility.version)
+@Mod(modid=JoinInvincibility.modid, name = JoinInvincibility.name, version = JoinInvincibility.version, acceptableRemoteVersions = "*")
 public
 class JoinInvincibility
 {
     public static final String modid = "joininvincibility";
     public static final String name = "JoinInvincibility";
     public static final String version = "1.7.10-1.0";
+
+    @Mod.Instance("joininvincibility")
+    public static JoinInvincibility instance;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
