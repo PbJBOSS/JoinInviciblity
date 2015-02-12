@@ -1,5 +1,5 @@
 #-------------------------------------------
-#Small mod to give players invicibility for a short time
+#Gives players invincibility on join
 #-------------------------------------------
 
 Invincibility time can be changed in the config
