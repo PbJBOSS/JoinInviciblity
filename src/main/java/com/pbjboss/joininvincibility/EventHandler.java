@@ -1,11 +1,8 @@
 package com.pbjboss.joininvincibility;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
-
-import java.util.List;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 /**
  * Created by Nico on 2/8/2015.
@@ -13,26 +10,12 @@ import java.util.List;
 public
 class EventHandler
 {
-
     @SubscribeEvent
-    public void serverTick(TickEvent.ServerTickEvent event)
+    public void damageEvent(LivingHurtEvent event)
     {
-        List players = MinecraftServer.getServer().getEntityWorld().playerEntities;
-        for (int i = 0; i < players.size(); i++)
+        if (event.entity instanceof EntityPlayer && event.entity.ticksExisted <= ConfigurationHandler.joinInvicibility * 20)
         {
-            EntityPlayer player = (EntityPlayer) players.get(i);
-            int invincibilityTimeTicks = ConfigurationHandler.joinInvicibility * 20;
-            if (player.getAge() > invincibilityTimeTicks + 2)
-                return;
-
-            if (player.getAge() < invincibilityTimeTicks)
-            {
-                player.capabilities.disableDamage = true;
-            }
-            else
-            {
-                player.capabilities.disableDamage = false;
-            }
+            event.setCanceled(true);
         }
     }
 }
